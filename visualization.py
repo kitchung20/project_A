@@ -3,8 +3,20 @@ import pandas as pd
 from statsmodels.graphics.gofplots import qqplot
 
 class Visualizer:
+    TITLE_SIZE = 16
+    LABEL_SIZE = 16
+    TICK_SIZE = 16
+    plt.rcParams.update({
+        'axes.titlesize': TITLE_SIZE,
+        'axes.labelsize': LABEL_SIZE,
+        'xtick.labelsize': TICK_SIZE,
+        'ytick.labelsize': TICK_SIZE,
+        'legend.fontsize': LABEL_SIZE,
+        'font.size': LABEL_SIZE,
+    })
+
     @staticmethod
-    def plot_hist(series: pd.Series, bins: int = 50, kde: bool = True):
+    def plot_hist(series, bins = 50, kde = True):
         series.plot.hist(bins=bins)
         plt.title(f"Histogram of {series.name}")
         plt.xlabel(series.name)
@@ -12,7 +24,7 @@ class Visualizer:
         plt.show()
 
     @staticmethod
-    def plot_timeseries(series: pd.Series):
+    def plot_timeseries(series):
         series.plot()
         plt.title(f"Time Series of {series.name}")
         plt.xlabel("Time")
@@ -20,13 +32,13 @@ class Visualizer:
         plt.show()
 
     @staticmethod
-    def plot_qq(residuals: pd.Series, title: str = 'QQ Plot'):
+    def plot_qq(residuals, title = 'QQ Plot'):
         qqplot(residuals, line='s')
         plt.title(title)
         plt.show()
 
     @staticmethod
-    def plot_pr(pr_df: pd.DataFrame, title: str = 'Precision–Recall Curve'):
+    def plot_pr(pr_df, title = 'Precision–Recall Curve'):
         plt.plot(pr_df['recall'], pr_df['precision'], marker='o')
         plt.title(title)
         plt.xlabel('Recall')
