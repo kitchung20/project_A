@@ -4,7 +4,7 @@ import pandas as pd
 class FeatureBuilder:
 
     @staticmethod
-    def lag_features(series: pd.Series, lags: int) -> pd.DataFrame:
+    def lag_features(series, lags):
         if not isinstance(series, pd.Series):
             series = pd.Series(series)
         
